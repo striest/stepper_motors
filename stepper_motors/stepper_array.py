@@ -1,7 +1,5 @@
 from math import pi
 
-from stepper_motors.stepper import Stepper
-
 class StepperArray:
     """
     Its an array of steppers. Commands to step and set angles are now given as arrays

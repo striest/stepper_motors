@@ -85,6 +85,8 @@ class VirtualStepper:
 		Resets the position of the stepper to 0
 		"""
 		self.angle = 0.0
+		self.draw()
+		time.sleep(self.delay)
 
 	def step_c(self):
 		self.angle += self.step_size
