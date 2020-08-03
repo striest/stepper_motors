@@ -8,7 +8,7 @@ class VirtualStepper:
 	"""
 	count = 0
 	
-	def __init__(self, name = None, n_steps = 1000, delay = 1e-3):
+	def __init__(self, name = None, n_steps = 256, delay = 1e-3):
 		"""
 		Since virtual steppers are virtual, we don't need pins or step sequences. We're still using delay and n_steps to resemble physical steppers.
 		"""
@@ -31,7 +31,7 @@ class VirtualStepper:
 
 	def draw(self):
 		self.ax.cla()
-		self.ax.set_title('{} Angle = {:.2f}'.format(self.name, self.angle))
+		self.ax.set_title('{}: Angle = {:.2f}$\pi$'.format(self.name, self.angle % (2*pi) / pi))
 		self.ax.set_xlim(-1, 1)
 		self.ax.set_ylim(-1, 1)
 
@@ -90,11 +90,13 @@ class VirtualStepper:
 
 	def step_c(self):
 		self.angle += self.step_size
+		self.angle = self.angle % (2*pi)
 		self.draw()
 		time.sleep(self.delay)
 
 	def step_cc(self):
 		self.angle -= self.step_size
+		self.angle = self.angle % (2*pi)
 		self.draw()
 		time.sleep(self.delay)
 
